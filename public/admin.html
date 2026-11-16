@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Restaurant Admin</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="/" class="brand">The Golden Spoon &middot; Admin</a>
+      <nav><button id="logoutBtn" class="btn btn-small btn-ghost" hidden>Log out</button></nav>
+    </div>
+  </header>
+
+  <main class="container section">
+    <section id="loginView" class="narrow">
+      <h2>Staff login</h2>
+      <form id="loginForm" class="form">
+        <label>Admin password<input type="password" name="password" required autocomplete="current-password" /></label>
+        <button class="btn" type="submit">Log in</button>
+        <div class="form-message" id="loginMessage" role="status"></div>
+      </form>
+    </section>
+
+    <section id="dashboard" hidden>
+      <div class="admin-tabs">
+        <button class="tab active" data-view="orders">Orders</button>
+        <button class="tab" data-view="bookings">Bookings</button>
+        <button class="tab" data-view="menu">Menu</button>
+      </div>
+
+      <div data-panel="orders">
+        <div class="toolbar"><h2>Orders</h2><button class="btn btn-small" data-refresh>Refresh</button></div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>#</th><th>Placed</th><th>Customer</th><th>Type</th><th>Items</th><th>Total</th><th>Payment</th><th>Status</th></tr></thead>
+          <tbody id="ordersBody"></tbody>
+        </table></div>
+      </div>
+
+      <div data-panel="bookings" hidden>
+        <div class="toolbar"><h2>Bookings</h2><button class="btn btn-small" data-refresh>Refresh</button></div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>#</th><th>Date</th><th>Time</th><th>Guests</th><th>Name</th><th>Contact</th><th>Notes</th><th>Status</th></tr></thead>
+          <tbody id="bookingsBody"></tbody>
+        </table></div>
+      </div>
+
+      <div data-panel="menu" hidden>
+        <div class="toolbar"><h2>Menu</h2></div>
+        <form id="addItemForm" class="inline-form">
+          <input name="name" placeholder="Name" required maxlength="100" />
+          <input name="category" placeholder="Category" required maxlength="50" />
+          <input name="price" type="number" step="0.01" min="0.01" placeholder="Price" required />
+          <input name="description" placeholder="Description" maxlength="300" />
+          <button class="btn btn-small" type="submit">Add item</button>
+        </form>
+        <div class="form-message" id="menuMessage" role="status"></div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Name</th><th>Category</th><th>Price</th><th>Available</th></tr></thead>
+          <tbody id="menuBody"></tbody>
+        </table></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Golden Spoon</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="#" class="brand">The Golden Spoon</a>
+      <nav>
+        <a href="#menu">Menu</a>
+        <a href="#booking">Book a table</a>
+        <a href="#track">Track order</a>
+        <button id="cartButton" class="btn btn-small">Cart (<span id="cartCount">0</span>)</button>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Fresh food, made to order</h1>
+      <p>Order online for pickup or delivery, or reserve a table and dine with us.</p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn">Order now</a>
+        <a href="#booking" class="btn btn-outline">Book a table</a>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section id="menu" class="container section">
+      <h2>Our menu</h2>
+      <div id="categoryTabs" class="tabs"></div>
+      <div id="menuGrid" class="menu-grid"><p class="muted">Loading menu…</p></div>
+    </section>
+
+    <section id="booking" class="section alt">
+      <div class="container narrow">
+        <h2>Book a table</h2>
+        <p class="muted" id="hoursNote"></p>
+        <form id="bookingForm" class="form" novalidate>
+          <div class="row">
+            <label>Full name<input name="name" required maxlength="100" /></label>
+            <label>Phone<input name="phone" type="tel" required maxlength="20" /></label>
+          </div>
+          <label>Email<input name="email" type="email" required maxlength="150" /></label>
+          <div class="row three">
+            <label>Date<input name="date" type="date" required /></label>
+            <label>Time<select name="time" id="timeSelect" required></select></label>
+            <label>Guests<input name="guests" type="number" min="1" max="20" value="2" required /></label>
+          </div>
+          <label>Special requests (optional)<textarea name="notes" rows="3" maxlength="500"></textarea></label>
+          <button class="btn" type="submit">Request booking</button>
+          <div class="form-message" id="bookingMessage" role="status"></div>
+        </form>
+      </div>
+    </section>
+
+    <section id="track" class="container narrow section">
+      <h2>Track your order</h2>
+      <form id="trackForm" class="form" novalidate>
+        <div class="row">
+          <label>Order number<input name="id" type="number" min="1" required /></label>
+          <label>Phone used for the order<input name="phone" type="tel" required /></label>
+        </div>
+        <button class="btn" type="submit">Check status</button>
+        <div class="form-message" id="trackMessage" role="status"></div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> The Golden Spoon &middot; <a href="/admin.html">Staff login</a></p>
+    </div>
+  </footer>
+
+  <!-- Cart drawer -->
+  <div id="cartOverlay" class="overlay" hidden></div>
+  <aside id="cartDrawer" class="drawer" aria-label="Your cart" hidden>
+    <div class="drawer-head">
+      <h2>Your order</h2>
+      <button class="icon-btn" id="closeCart" aria-label="Close cart">&times;</button>
+    </div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-totals" id="cartTotals"></div>
+
+    <form id="checkoutForm" class="form" novalidate>
+      <h3>Checkout</h3>
+      <div class="segmented">
+        <label><input type="radio" name="orderType" value="pickup" checked /> Pickup</label>
+        <label><input type="radio" name="orderType" value="delivery" /> Delivery</label>
+      </div>
+      <label>Full name<input name="customerName" required maxlength="100" /></label>
+      <label>Phone<input name="phone" type="tel" required maxlength="20" /></label>
+      <label>Email (we'll send your confirmation here)<input name="email" type="email" required maxlength="150" /></label>
+      <label id="addressField" hidden>Delivery address<textarea name="address" rows="2" maxlength="300"></textarea></label>
+      <label>Notes (optional)<textarea name="notes" rows="2" maxlength="500"></textarea></label>
+      <fieldset class="plain">
+        <legend>Payment</legend>
+        <div class="segmented">
+          <label><input type="radio" name="paymentMethod" value="online" checked /> Pay online now</label>
+          <label><input type="radio" name="paymentMethod" value="cash" /> <span id="cashLabel">Pay on pickup</span></label>
+        </div>
+      </fieldset>
+      <p class="muted small" id="testModeNote" hidden>Online payment is in practice mode. No real money is charged.</p>
+      <button class="btn btn-block" type="submit" id="placeOrderBtn">Continue to payment</button>
+      <div class="form-message" id="checkoutMessage" role="status"></div>
+    </form>
+  </aside>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
