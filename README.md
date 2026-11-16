@@ -163,3 +163,5 @@ Admin endpoints require an `x-admin-key` header containing the admin password.
 - Set up SMTP so emails are actually sent.
 - Back up `data/restaurant.db` regularly.
 - Optional: add payment **webhooks**. The payment company then notifies the server directly, so a customer who closes their browser right after paying is confirmed automatically, without staff pressing "Check payment".
+#   p r o j e c t s  
+ 
